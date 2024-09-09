@@ -1,4 +1,4 @@
-import Node from './Node.js';
+import Node from './Node.mjs';
 
 export default class LinkedList {
     constructor() {
@@ -40,5 +40,82 @@ export default class LinkedList {
         }
     }
 
+    removeTail() {
+        if (!this.head) {
+            console.error("Empty list nothing to remove.");
+            return null;
+        }
+        
+        if (!this.head.nextNode) {
+            const removedData = this.head.nodeData;
+            this.head = null;
+            return removedData;
+        }
 
+        let currentHead = this.head;
+        while (currentHead.nextNode.nextNode) {
+            currentHead = currentHead.nextNode;
+        }
+        
+        const removedData = currentHead.nextNode.nodeData;
+        currentHead.nextNode = null;
+        return removedData;
+    }
+
+    removeByData(data) {
+        if (this.head === null) {
+            console.error("Empty list nothing to remove.");
+            return null;
+        }
+
+        if (this.head.nodeData === data) {
+            const removedData = this.head.nodeData;
+            this.head = this.head.nextNode;
+            return removedData;
+        }
+
+        let previousNode;
+        let currentNode = this.head;
+
+        while (currentNode.nodeData !== data && currentNode !== null) {
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+
+        if (currentNode === null) {
+            console.error("Node not found in list, nothing removed.");
+            return null;
+        } else {
+            const removedData = currentNode.nodeData;
+            previousNode.nextNode = currentNode.nextNode;
+            currentNode.nextNode = null;
+            return removedData;
+        }
+    }
+
+    printList() {
+        if (this.head === null) {
+            console.log('Empty list, nothing to print.');
+            return null;
+        } else {
+            let list = "START ";
+            let currentHead = this.head;
+
+            while (currentHead) {
+                list += `-> ${currentHead.data} `;
+                currentHead = currentHead.nextNode;
+            }
+
+            list += `-> END`;
+            console.log(list);
+            return;
+        }
+    }
 }
+
+const måneder = new LinkedList();
+måneder.addToHead("Januar");
+måneder.addToTail("Februar");
+måneder.addToTail("Mars");
+
+måneder.printList();
