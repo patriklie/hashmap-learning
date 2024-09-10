@@ -22,6 +22,5 @@ export default class HashMap {
         const index = this.hash(key);
         const node = this.hashmap[index].findNodeByKey(key);
         return node ? node.data.value : null; // Returner verdien hvis noden finnes, ellers null
-    }
-    
+    } 
 }
