@@ -29,6 +29,63 @@ export default class LinkedList {
         }
     }
 
+    find(data) {
+        if (!this.head) {
+            console.log('Empty list, nothing to search in.');
+            return null;
+        }
+
+        let currentNode = this.head;
+
+        while (currentNode !== null) {
+            if (currentNode.nodeData === data) {
+                return currentNode;
+            }
+            currentNode = currentNode.nextNode;
+        }
+
+        console.log("Data not found in list.");
+        return null;
+    }
+
+    contains(data) {
+        if (!this.head) {
+            console.log('Empty list, data not found.');
+            return false;
+        }
+
+        let currentNode = this.head;
+
+        while (currentNode !== null) {
+            if (currentNode.nodeData === data) {
+                return true;
+            }
+            currentNode = currentNode.nextNode;
+        }
+
+        console.log("Data not found in list.");
+        return false;
+    }
+
+    size() {
+        if (this.head === null) {
+            return 0;
+        }
+
+        let currentNode = this.head;
+        let count = 0;
+
+        while (currentNode !== null) {
+            currentNode = currentNode.nextNode;
+            count++;
+        }
+        return count;
+    }
+
+    isEmpty() {
+        return this.head === null;
+    }
+
     removeHead() {
         if (!this.head) {
             console.error("Empty list nothing to remove.");
