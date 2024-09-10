@@ -48,6 +48,56 @@ export default class LinkedList {
         return null;
     }
 
+    findNodeByKey(key) {
+        if (this.head === null) {
+            console.error('Empty list, nothing to serach in.');
+            return null;
+        }
+
+        let currentNode = this.head;
+        while (currentNode !== null) {
+
+            if (currentNode.data.key === key) {
+                return currentNode;
+            }
+            currentNode = currentNode.nextNode;
+        }
+
+        console.error(`Node with key: ${key} not found in list.`);
+        return null;
+    }
+
+    findNodeRecursively(data, currentNode = this.head) {
+        if (currentNode === null) {
+            return null;
+        }
+        if (currentNode.data === data) {
+            return currentNode;
+        }
+        return this.findNodeRecursively(data, currentNode.next);
+    }
+
+    getAtIndex(index) {
+        if (index < 0) {
+            console.error('Index must be an non-negative integer');
+            return null;
+        }
+
+        let currentNode = this.head;
+        let count = 0;
+
+        while (currentNode !== null) {
+            if (index === count) {
+                return currentNode;
+            }
+            currentNode = currentNode.nextNode;
+            count++;
+        }
+
+        console.error('Index out of bounds.');
+        return null;
+    }
+
     contains(data) {
         if (!this.head) {
             console.log('Empty list, data not found.');
@@ -150,6 +200,10 @@ export default class LinkedList {
         }
     }
 
+    clear() {
+        this.head = null;
+    }
+
     printList() {
         if (this.head === null) {
             console.log('Empty list, nothing to print.');
@@ -169,10 +223,3 @@ export default class LinkedList {
         }
     }
 }
-
-const måneder = new LinkedList();
-måneder.addToHead("Januar");
-måneder.addToTail("Februar");
-måneder.addToTail("Mars");
-
-måneder.printList();
