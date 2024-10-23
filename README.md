@@ -1,55 +1,55 @@
 # HashMap Implementation in JavaScript
 
-## Beskrivelse
-Dette prosjektet er en enkel implementasjon av en **HashMap** i JavaScript som bruker **LinkedList** for å håndtere kollisjoner. Dette prosjektet illustrerer hvordan en HashMap kan bruke separate chaining (ved å bruke en linked list) for å håndtere tilfeller der to eller flere nøkler gir samme hash-verdi.
+## Description
+This project is a simple implementation of a **HashMap** in JavaScript that uses **LinkedList** to handle collisions. This project illustrates how a HashMap can use separate chaining (by utilizing a linked list) to handle cases where two or more keys produce the same hash value.
 
-## Filstruktur
-- `HashMap.mjs`: Inneholder implementasjonen av HashMap-klassen, inkludert metoder som `hash`, `assign`, og `get`.
-- `LinkedList.mjs`: Implementerer en enkel LinkedList-struktur som brukes i HashMap for å håndtere kollisjoner.
-- `Node.mjs`: Representerer en node i en LinkedList, som holder data og peker til den neste noden i listen.
+## File Structure
+- `HashMap.mjs`: Contains the implementation of the HashMap class, including methods like `hash`, `assign`, and `get`.
+- `LinkedList.mjs`: Implements a simple LinkedList structure used in the HashMap to handle collisions.
+- `Node.mjs`: Represents a node in a LinkedList, holding data and pointing to the next node in the list.
 
-## Funksjoner i HashMap
+## Functions in HashMap
 
 ### `hash(key)`
-Denne funksjonen genererer en hash-verdi basert på en gitt nøkkel. Hash-verdien blir deretter begrenset til størrelsen på HashMap ved hjelp av modulus (`%`), for å sikre at indeksen er innenfor rekkevidden til arrayen som utgjør hashmappet.
+This function generates a hash value based on a given key. The hash value is then constrained to the size of the HashMap using modulus (`%`) to ensure the index is within the range of the array that constitutes the hashmap.
 
 ### `assign(key, value)`
-Legger til en verdi i HashMap ved hjelp av en nøkkel. Hvis det allerede finnes en verdi på den genererte hash-indeksen, legges den til i en LinkedList.
+Adds a value to the HashMap using a key. If there is already a value at the generated hash index, it is added to a LinkedList.
 
 ### `get(key)`
-Returnerer verdien som er tilknyttet en gitt nøkkel. Hvis ingen verdi er funnet for den oppgitte nøkkelen, returneres `null`.
+Returns the value associated with a given key. If no value is found for the specified key, `null` is returned.
 
-## Funksjoner i LinkedList
+## Functions in LinkedList
 
 ### `addToHead(data)`
-Legger til en node i begynnelsen av LinkedList.
+Adds a node at the beginning of the LinkedList.
 
 ### `addToTail(data)`
-Legger til en node i slutten av LinkedList.
+Adds a node at the end of the LinkedList.
 
 ### `findNodeByKey(key)`
-Finner en node i LinkedList basert på nøkkelen.
+Finds a node in the LinkedList based on the key.
 
 ### `removeHead()`
-Fjerner hodet (første element) fra listen.
+Removes the head (first element) from the list.
 
 ### `removeTail()`
-Fjerner halen (siste element) fra listen.
+Removes the tail (last element) from the list.
 
-## Eksempel på bruk
+## Example Usage
 
 ```javascript
 import HashMap from "./HashMap.mjs";
 
 const hashMap = new HashMap(10);
 
-// Legg til noen nøkler og verdier
-hashMap.assign('navn', 'Patrik');
-hashMap.assign('alder', 36);
+// Add some keys and values
+hashMap.assign('name', 'Patrik');
+hashMap.assign('age', 36);
 
-// Hent verdiene basert på nøklene
-console.log(hashMap.get('navn')); // Patrik
-console.log(hashMap.get('alder')); // 36
+// Retrieve values based on the keys
+console.log(hashMap.get('name')); // Patrik
+console.log(hashMap.get('age')); // 36
 
-// Hent en verdi som ikke eksisterer
-console.log(hashMap.get('jobb')); // null
+// Retrieve a value that does not exist
+console.log(hashMap.get('job')); // null
